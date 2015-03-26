@@ -32,12 +32,13 @@
         }
         wrap.innerHTML=str;
     }
-    btn.addEventListener('click',makeCarousl);
+    
     for(var i=0; i<todayPhoto.length/3; i++){
         str += '<img src="'+todayPhoto[i].img+'"> ';
     }
 
     wrap.innerHTML = str;
 
+    btn.addEventListener('click',makeCarousl);
 
  
