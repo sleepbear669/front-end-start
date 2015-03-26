@@ -1,4 +1,3 @@
-    
     var todayPhoto = [
         {"url":"http://media.daum.net/photo/2841","img":"http://icon.daumcdn.net/w/c/12/05/82877085750988319.jpeg","title":"&quot;뜨면 끝장&quot; 최강 공격헬기 성능이 설마","id":"20120516082207657"}
         ,{"url":"http://media.daum.net/entertain/photo/gallery/?gid=100320","img":"http://icon.daumcdn.net/w/c/12/05/82876693901189319.jpeg","title":"&#39;오늘만&#39; 필리핀 새댁 5개국어 능통 엄친딸","id":"20120516091011626"}
@@ -10,20 +9,12 @@
         ,{"url":"http://sports.media.daum.net/general/gallery/STARKIMYUNA/index.html","img":"http://icon.daumcdn.net/w/c/12/05/81727815537682839.jpeg","title":"&#39;교생&#39; 김연아, 스승의날에도 인기폭발","id":"20120516092003892"}
     ];
 
-    var wrap = document.getElementById('wrap');
-
-    var str = '';
-
-    for(var i=0; i<todayPhoto.length/3; i++){
-        str += '<img src="'+todayPhoto[i].img+'"> ';
-    }
-
-    wrap.innerHTML = str;
-
-    var pageCount = 0;
-    var btn = document.getElementById("buttonGroup");
-
-    btn.addEventListener('click',function(e){
+    var wrap = getById("wrap");
+    var str = '';   
+    var pageCount = 0; 
+    var btn = getById("buttonGroup");
+    var makeCarousl = function(e){
+        
         if(e.target.id === "left"){
             pageCount = pageCount-1;
             if(pageCount === -1) pageCount = 2;
@@ -31,13 +22,22 @@
             pageCount = (pageCount+1)%3;
         }
         var str = '';
-        var template = document.getElementById("pageCountTemplate").innerHTML;
+        var template = getInnerHTMLById("pageCountTemplate");
         var innerHTML = template.replace("{count}", pageCount+1);
-        document.getElementById("pageCount").innerHTML = innerHTML; 
+        innerHTMLById("pageCount", innerHTML); 
         
         for( var i=pageCount*3; i<(pageCount+1)*3;i++){
             if(todayPhoto[i] !== undefined)
              str += '<img src="'+todayPhoto[i].img+'"> ';
         }
         wrap.innerHTML=str;
-    });
+    }
+    btn.addEventListener('click',makeCarousl);
+    for(var i=0; i<todayPhoto.length/3; i++){
+        str += '<img src="'+todayPhoto[i].img+'"> ';
+    }
+
+    wrap.innerHTML = str;
+
+
+ 
