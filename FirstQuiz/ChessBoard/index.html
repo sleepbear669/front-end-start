@@ -3,32 +3,17 @@
 <head>
     <meta charset=utf-8 />
     <title>source</title>
+    <link rel="stylesheet" type="text/css" href="chessBoard.css">
 </head>
 <body>
 
 <div id="board">
-    <!-- 이 HTML을 자바스크립트로 추가하면 됩니다.
-      <span class="black"></span>
-      <span class="white"></span>
-      <span class="black"></span>
-      <span class="white"></span>
-
-      <span class="white"></span>
-      <span class="black"></span>
-      <span class="white"></span>
-      <span class="black"></span>
-
-      <span class="black"></span>
-      <span class="white"></span>
-      <span class="black"></span>
-      <span class="white"></span>
-
-      <span class="white"></span>
-      <span class="black"></span>
-      <span class="white"></span>
-      <span class="black"></span>
-    //-->
 </div>
+
+<script type="text/template" id="boardTemplate">
+  <span class={color}></span>  
+</script>
+<script type="text/javascript" src="../../baseFunctionCode.js"></script>
 <script type="text/javascript" src="chessBoard.js"></script>
 </body>
 </html>
