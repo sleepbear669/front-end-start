@@ -110,6 +110,9 @@ header .hide-completed {
   margin-left: 5px;
 }
 
+.blue{
+  background-color: #d2edf4;
+}
 @media (max-width: 600px) {
   li {
     padding: 12px 15px;
