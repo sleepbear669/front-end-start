@@ -1,7 +1,11 @@
 var toDoList = getById("toDoList");
 var template = getInnerHTMLById("toDoListTemplate");
-var input = getById("toDoText");
 
+var deleteList =  function(e) {
+	if(e.target.className === "delete" || e.target.className === "toggle-checked"){
+			e.target.parentNode.remove();
+	}
+};
 var addTodoList = function(e){
 	if(e.which === 13){
 		toDoList.innerHTML += template.replace("{content}",e.target.value);
@@ -9,4 +13,5 @@ var addTodoList = function(e){
 	}
 }
 
-input.addEventListener("keydown", addTodoList);
+getById("toDoText").addEventListener("keydown", addTodoList);
+toDoList.addEventListener("click", deleteList);
