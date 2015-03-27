@@ -5,11 +5,18 @@
    		}
     };
     var mouseup = function(e) {
-    	if(e.target.id !== "board"){
+    	if(e.target.id !== "board" && boardColor !== null){
     	e.target.className = boardColor;
     	}
     };
     
+    var mouseout = function(e) {
+    	if(boardColor !== null){
+    		e.target.className = boardColor;
+    		boardColor = null;
+    	}
+    }
+
  	var str ="";
  	var template = getInnerHTMLById("boardTemplate");
  	var color;
@@ -28,3 +35,4 @@
 
     board.addEventListener("mousedown", mousedown);
     board.addEventListener("mouseup", mouseup);
+    board.addEventListener("mouseout", mouseout);
