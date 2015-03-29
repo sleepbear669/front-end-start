@@ -31,22 +31,16 @@
         changeDoc(Template.make(), todayPhoto.pageNumber);
     }
 
-    function currentTime(){
-        return new Date().getTime();
-    }
     var lastClickTime = 0;
     function checkTime(){
         lastClickTime = new Date().getTime();
     }
     function autoNextPage(){
-        console.log(currentTime());
-        console.log(lastClickTime);
-
         if( currentTime() - lastClickTime > 3000)
             nextPage();
-        else console.log("바뀌지않음 ");
     }
-    setInterval(autoNextPage, 3000);
+
+    setInterval(autoNextPage, 1000);
     changeDoc(Template.make(), todayPhoto.pageNumber);
     getById("buttonGroup").addEventListener("click", checkTime);
     getById("left").addEventListener("click", previousPage);
