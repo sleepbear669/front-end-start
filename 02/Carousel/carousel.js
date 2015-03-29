@@ -1,5 +1,5 @@
     var todayPhoto = [
-        {"url":"http://media.daum.net/photo/2841","img":"http://icon.daumcdn.net/w/c/12/05/82877085750988319.jpeg","title":"&quot;뜨면 끝장&quot; 최강 공격헬기 성능이 설마","id":"20120516082207657"}
+        {"url":"http://media.daum.net/photo/2841","img":"http://icon.daumcdn.net/w/c/12/05/82877085750988319.jpeg","title":'&quot;뜨면 끝장&quot; 최강 공격헬기 성능이 설마',"id":"20120516082207657"}
         ,{"url":"http://media.daum.net/entertain/photo/gallery/?gid=100320","img":"http://icon.daumcdn.net/w/c/12/05/82876693901189319.jpeg","title":"&#39;오늘만&#39; 필리핀 새댁 5개국어 능통 엄친딸","id":"20120516091011626"}
         ,{"url":"http://media.daum.net/photo/4010","img":"http://icon.daumcdn.net/w/c/12/05/82876307459008319.jpeg","title":"[북한 결혼식 풍경] 신랑·신부 &quot;행복합니다&quot;","id":"20120516092605081"}
         ,{"url":"http://sports.media.daum.net/general/gallery/gagsports/index.html","img":"http://icon.daumcdn.net/w/c/12/05/81730673405131839.jpeg","title":"&#39;내가 더 잘해&#39; 후보GK 경기 난입해 선방","id":"20120516100608409"}
@@ -8,37 +8,46 @@
         ,{"url":"http://media.daum.net/photo/3899","img":"http://icon.daumcdn.net/w/c/12/05/81728227037306839.jpeg","title":"생후 6개월에 프랑스로 입양됐던 아이가..","id":"20120516030614331"}
         ,{"url":"http://sports.media.daum.net/general/gallery/STARKIMYUNA/index.html","img":"http://icon.daumcdn.net/w/c/12/05/81727815537682839.jpeg","title":"&#39;교생&#39; 김연아, 스승의날에도 인기폭발","id":"20120516092003892"}
     ];
+    todayPhoto.pageNumber = 0;
 
-    var wrap = getById("wrap");
-    var str = '';   
-    var pageCount = 0; 
-    var btn = getById("buttonGroup");
-    var makeCarousl = function(e){
-        
-        if(e.target.id === "left"){
-            pageCount = pageCount-1;
-            if(pageCount === -1) pageCount = 2;
-        }else{
-            pageCount = (pageCount+1)%3;
-        }
-        var str = '';
-        var template = getInnerHTMLById("pageCountTemplate");
-        var innerHTML = template.replace("{count}", pageCount+1);
-        innerHTMLById("pageCount", innerHTML); 
-        
-        for( var i=pageCount*3; i<(pageCount+1)*3;i++){
-            if(todayPhoto[i] !== undefined)
-             str += '<img src="'+todayPhoto[i].img+'"> ';
-        }
-        wrap.innerHTML=str;
+    var Template = {
+        format : getInnerHTMLById("wrapTemplate"),
+        make : function(){
+                return tmpl(this.format, {list : todayPhoto} );
+            }
     }
-    
-    for(var i=0; i<todayPhoto.length/3; i++){
-        str += '<img src="'+todayPhoto[i].img+'"> ';
+    function changeDoc(HTML, n){
+        innerHTMLById("wrap", HTML);
+        getById("pageCount").textContent = n+1;
+    } 
+
+    function previousPage(){
+        todayPhoto.pageNumber = todayPhoto.pageNumber-1;
+        if(todayPhoto.pageNumber === -1) todayPhoto.pageNumber = 2;
+        changeDoc(Template.make(), todayPhoto.pageNumber);
+    }
+    function nextPage(){
+        todayPhoto.pageNumber = (todayPhoto.pageNumber+1)%3;
+        changeDoc(Template.make(), todayPhoto.pageNumber);
     }
 
-    wrap.innerHTML = str;
+    function currentTime(){
+        return new Date().getTime();
+    }
+    var lastClickTime = 0;
+    function checkTime(){
+        lastClickTime = new Date().getTime();
+    }
+    function autoNextPage(){
+        console.log(currentTime());
+        console.log(lastClickTime);
 
-    btn.addEventListener('click',makeCarousl);
-
- 
+        if( currentTime() - lastClickTime > 3000)
+            nextPage();
+        else console.log("바뀌지않음 ");
+    }
+    setInterval(autoNextPage, 3000);
+    changeDoc(Template.make(), todayPhoto.pageNumber);
+    getById("buttonGroup").addEventListener("click", checkTime);
+    getById("left").addEventListener("click", previousPage);
+    getById("right").addEventListener("click", nextPage);

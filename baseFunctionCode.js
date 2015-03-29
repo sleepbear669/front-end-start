@@ -2,3 +2,4 @@
     function getInnerHTMLById (id) { return getById(id).innerHTML; }
     function innerHTMLById(id, str){ getById(id).innerHTML = str;  }   
 	function getNChild(element, n){return element.children[n-1];}
+	function currentTime(){ return new Date().getTime(); }
