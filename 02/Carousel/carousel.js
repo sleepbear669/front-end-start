@@ -31,13 +31,15 @@
         changeDoc(Template.make(), todayPhoto.pageNumber);
     }
 
-    var lastClickTime = 0;
+    var lastClickTime = new Date().getTime();
     function checkTime(){
         lastClickTime = new Date().getTime();
     }
     function autoNextPage(){
-        if( currentTime() - lastClickTime > 3000)
+        if( currentTime() - lastClickTime > 3000){
             nextPage();
+            lastClickTime = currentTime();
+        }
     }
 
     setInterval(autoNextPage, 1000);
