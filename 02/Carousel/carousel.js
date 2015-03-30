@@ -31,19 +31,15 @@
         changeDoc(Template.make(), todayPhoto.pageNumber);
     }
 
-    var lastClickTime = new Date().getTime();
-    function checkTime(){
-        lastClickTime = new Date().getTime();
-    }
     function autoNextPage(){
-        if( currentTime() - lastClickTime > 3000){
+        if( Time.isPass(3000)){
             nextPage();
-            lastClickTime = currentTime();
+            Time.checkTime();
         }
     }
 
     setInterval(autoNextPage, 1000);
     changeDoc(Template.make(), todayPhoto.pageNumber);
-    getById("buttonGroup").addEventListener("click", checkTime);
+    getById("buttonGroup").addEventListener("click", Time.checkTime());
     getById("left").addEventListener("click", previousPage);
     getById("right").addEventListener("click", nextPage);
