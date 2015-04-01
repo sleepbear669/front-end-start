@@ -1,16 +1,16 @@
-    var mousedown = function(e) {
+    function mousedown(e) {
     	if(e.target.id !== "board"){
     	boardColor = e.target.className;
     	e.target.className = "red";
    		}
     };
-    var mouseup = function(e) {
+    function mouseup(e) {
     	if(e.target.id !== "board" && boardColor !== null){
     	e.target.className = boardColor;
     	}
     };
     
-    var mouseout = function(e) {
+    function mouseout(e) {
     	if(boardColor !== null){
     		e.target.className = boardColor;
     		boardColor = null;
