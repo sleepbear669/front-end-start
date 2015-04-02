@@ -2,11 +2,23 @@
 <html>
 <head>
 	<title>BoxOffice</title>
+	<link rel="stylesheet" type="text/css" href="boxOffice.css">
 </head>
 <body>
+<div id="boxOfficeWrap">
+	<ul id="boxOfficeList">
+	</ul>
+</div>
 
-
-
+<script type="text/template" id="boxOfficeListTemplate">
+		<% for(var i=0 ; i<list.length; i++) {%>
+		<li>
+			<img class="moviePhoto" src="<%= list[i].photo.fullname%>"></img>
+			<span class="title"><%= list[i].titleKo %></span>
+			<span class="point"><%= list[i].moviePoint.expectPointAvg %></span>
+		</li>
+		<%}%>
+</script>
 
 <script type="text/javascript" src="../../baseFunctionCode.js"></script>
 <script type="text/javascript" src="../../tmpl.js"></script>
