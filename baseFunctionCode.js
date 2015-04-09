@@ -46,3 +46,8 @@
 
     return string;
 };
+
+var windowSize = {
+    width : window.innerWidth,
+    heigth : window.innerHeight
+};
