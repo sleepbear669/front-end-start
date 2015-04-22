@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+    <meta charset="UTF-8">
+    <title>검색서비스</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <link rel="stylesheet" href="CSS/search.css"/>
+</head>
+<body>
+
+<div class="container">
+    <h1>검색 서비스</h1>
+
+    <form  class="form-inline" action="#">
+        <div class="input-group">
+            <input type="text" class="form-control" placeholder="검색어를 넣어주세요" >
+            <div class="input-group-addon">
+                <button class="btnbtn-primary">
+                    <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                </button>
+            </div>
+        </div>
+
+    </form>
+
+    <ul  id="menuTab" class="nav nav-tabs" >
+        <li ><a href="#" id="board" >게시판</a></li>
+        <li ><a href="#" id="vclip">동영상</a></li>
+        <li ><a href="#" id="image">이미지</a></li>
+        <li ><a href="#" id="knowledge">팁</a></li>
+        <li ><a href="#" id="blog">블로그</a></li>
+        <li ><a href="#" id="cafe">카페</a></li>
+    </ul>
+    <div id="contents" class="mov-panel" >
+        <ul id="contentsList" >
+        </ul>
+        <img id="load-image" src="resources/ajax-loader.gif"class="hide">
+    </div>
+    <!-- 더보기 있을경우만 노출 -->
+    <button class="adder btn btn-default btn-block hide"  >더보기</button>
+
+    <script type="text/template" id="listTemplate">
+        <% for( var i=0 ; i<list.length ; i++){ %>
+            <% if(list[i].title === ""){ continue;} %>
+            <li>
+                <% if(type === "vclip" || type === "image"){%><img src="<%=list[i].thumbnail%>" class="img-thumbnail hide"><%} %>
+                <a href="<%=list[i].link%> " target="_blank"><%= list[i].title %></a>
+            </li>
+            <% } %>
+    </script>
+    <script type="text/javascript " src="Module/GetJson.js"></script>
+    <script type="text/javascript " src="Module/tmpl.js"></script>
+    <script type="text/javascript" src="Module/util.js"></script>
+    <script type="text/javascript " src="Module/SpecialCharacters.js"></script>
+    <script type="text/javascript" src="search.js"></script>
+
+</div>
+</body>
+</html>
