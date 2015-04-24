@@ -1,0 +1,15 @@
+body{
+    overflow:scroll;
+}
+.dummy{
+    height: 1000px;
+}
+.top {
+    display: block;
+    position: fixed;
+    bottom: 20px;
+    right: 30px;
+    background: url(http://cdn1.iconfinder.com/data/icons/oxygen/48x48/actions/go-up.png) no-repeat;
+    width: 48px;
+    height: 48px;
+}
