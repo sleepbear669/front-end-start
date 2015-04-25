@@ -3,6 +3,10 @@
  */
 $(document).ready(function(){
     var score = 0;
+    var MISS_MAX = 5;
+    var missCount = 0;
+
+
     var $box = $("<div>")
         .attr("id","catch_me")
         .addClass("red")
@@ -27,8 +31,23 @@ $(document).ready(function(){
     var $button = $("button#start")
         .click(function(){
             $(this).hide();
-            setInterval(function(){
-                moveBox($("#screen"), $box)
+            $("p#miss").show();
+            $("p span#max").html(MISS_MAX);
+            var $miss = $("p span#count").html(missCount);
+            var gameInterval= setInterval(function(){
+                if(missCount < MISS_MAX) {
+                    if ($box.hasClass("red")) {
+                        missCount++;
+                        $miss.html(missCount);
+                    }
+                    moveBox($("#screen"), $box)
+                }else {
+                    $("p#miss").hide();
+                    $("button#start").show();
+                    missCount = 0;
+                    score = 0;
+                    clearInterval(gameInterval);
+                }
             }, 1000);
         })
 });
