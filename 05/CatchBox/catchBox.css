@@ -1,0 +1,21 @@
+html, body{
+    height: 100%;
+}
+.game{
+    height: 100%;
+}
+#info{
+    padding-top: 10px;
+    text-align: center;
+    height: 70px;
+}
+#screen{
+    border-top: dashed 1px deepskyblue;
+    height: 86%;
+}
+.red{
+    background: red;
+}
+.blue{
+    background: blue;
+}
