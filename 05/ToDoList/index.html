@@ -4,6 +4,8 @@
   <meta charset="UTF-8">
   <title>Todos</title>
   <link rel="stylesheet" href="todos.css">
+  <script type="text/javascript" src="../../modules/jquery-2.1.3.js"></script>
+  <script type="text/javascript" src="../../modules/jquery.tmpl.js"></script>
 </head>
 <body>
 
@@ -11,19 +13,22 @@
   <header>
     <h1>Todo List</h1>
 
-    <form class="new-task">
-      <input type="text" name="text" placeholder="할일을 입력하세요">
+    <form  class="new-task" onsubmit="return false">
+      <input type="text" id="todo_input" name="text" placeholder="할일을 입력하세요">
     </form>
   </header>
   <ul>
-    <li>
-      <button class="delete">×</button>
-      <input type="checkbox" class="toggle-checked">
-      <span class="text">JS공부하기</span>
-    </li>
   </ul>
 
-</div>
 
+  <script type="text/html" id="todoTemplate">
+<li>
+  <button class="delete">×</button>
+  <input type="checkbox" class="toggle-checked">
+  <span class="text" >${content}</span>
+</li>
+  </script>
+</div>
+<script type="text/javascript" src="todos.js"></script>
 </body>
 </html>
