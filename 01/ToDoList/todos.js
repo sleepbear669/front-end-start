@@ -1,7 +1,6 @@
 var toDoList = getById("toDoList");
 var template = getInnerHTMLById("toDoListTemplate");
 var listCount = localStorage.length;
-var contenList;
 var spanText;
 var checkList = function(e) {
 	if(e.target.className === "toggle-checked"){
