@@ -1,0 +1,8 @@
+
+#game_info{
+    height: 15%;
+    border-bottom: dashed 1px darkgrey;
+}
+#game_screen{
+    height: 80%;
+}
