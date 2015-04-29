@@ -29,16 +29,23 @@ $(document).ready(function(){
             return this.img.slice(this.currentNum*this.pageImgCount, (this.currentNum+1)*this.pageImgCount);
         }
     };
+    var $template = $("#template");
     var html;
-    $.tmpl($("#template"), todayPhoto.currentPageImg()).appendTo("#wrap");
+    var $pageNum = $("#page-num");
+
+    $.tmpl($template, todayPhoto.currentPageImg()).appendTo("#wrap");
     $("#right").click(function(){
         todayPhoto.nextPage();
-        html = $.tmpl($("#template"), todayPhoto.currentPageImg());
-        $("#wrap").html(html);
+        changePage();
     });
     $("#left").click(function(){
         todayPhoto.previousPage();
-        html = $.tmpl($("#template"), todayPhoto.currentPageImg());
-        $("#wrap").html(html);
+        changePage();
     });
+
+    function changePage() {
+        html = $.tmpl($template, todayPhoto.currentPageImg());
+        $("#wrap").html(html);
+        $pageNum.text(todayPhoto.currentNum + 1);
+    }
 });
