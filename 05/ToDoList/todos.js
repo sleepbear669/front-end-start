@@ -3,6 +3,7 @@ $(document).ready(function(){
     var $ul = $("ul");
     $ul.html(localStorage["content"]);
     var todoContent = "";
+
     var inputTodo = function (selector) {
         todoContent = $(selector).val();
         $(selector).val("");
@@ -13,12 +14,12 @@ $(document).ready(function(){
     };
 
     function deleteContent(element) {
-        element.parentNode.remove();
+        element.remove();
     }
 
     $ul.click(function(event){
         if(event.target.className === "delete"){
-            deleteContent(event.target);
+            deleteContent(event.target.parentNode);
             updateLocalStorage("content", $ul.html());
         }
     });
