@@ -3,6 +3,10 @@ div.box {
     width: 100px;
     height: 100px;
 }
+#board{
+    display: inline-block;
+    border: 1px solid black;
+}
 #board :nth-child(4n+1){
     clear: both;
 }
