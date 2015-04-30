@@ -18,6 +18,7 @@ $(document).ready(function () {
     var $template = $("#listTemplate");
     var $searchList = $("ul#searchList");
     var $currentTab = $("ul :first-child").toggleClass("active");
+    var $loading = $("#loading");
     var $adder = $("#adder").click(function(){
         pageInfo.currentPageNo++;
         searchData();
@@ -50,6 +51,7 @@ $(document).ready(function () {
     };
 
     function searchData() {
+        $loading.toggleClass("hide");
         $.getJSON(pageInfo.url(), function(data){
             var item = data.channel.item;
             var html  = $.tmpl($template, {list : item , type : pageInfo.page});
@@ -58,6 +60,7 @@ $(document).ready(function () {
                     $(val).html(htmlSpecialChars(val.innerHTML,""));
             });
             $searchList.append(html);
+            $loading.toggleClass("hide");
         })
     };
     function search() {
