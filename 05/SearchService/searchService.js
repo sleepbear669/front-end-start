@@ -16,24 +16,50 @@ $(document).ready(function () {
         }
     };
     var $template = $("#listTemplate");
+    var $searchList = $("ul#searchList");
+    var $currentTab = $("ul :first-child").toggleClass("active");
+    var $adder = $("#adder").click(function(){
+        pageInfo.currentPageNo++;
+        searchData();
+    });
+
+    var $tab = $("#board_tab").click(function(event){
+        changTap();
+    });
+
+    $("form").submit(function () {
+        search();
+    });
+
+    function changTap() {
+        var target = $(event.target);
+        $currentTab.toggleClass("active");
+        $currentTab = target.parent().toggleClass("active");
+        $searchList.empty();
+        if (target.is("a") && pageInfo.searchKey != "") {
+            pageInfo.page = target.attr('id');
+            searchData();
+        }
+    };
+
     function initPageInfo() {
         pageInfo.searchKey = $("form input").val().trim();
         pageInfo.page = "board";
         pageInfo.currentPageNo = 1;
         pageInfo.totalPage = 0;
-    }
+    };
 
     function searchData() {
         $.getJSON(pageInfo.url(), function(data){
             var item = data.channel.item;
             var html  = $.tmpl($template, {list : item , type : pageInfo.page});
-
-            $("ul#searchList").html(html);
-            console.log(item);
-            console.log(html);
+            $.each(html, function(i , val){
+                if($(val).is("li"))
+                    $(val).html(htmlSpecialChars(val.innerHTML,""));
+            });
+            $searchList.append(html);
         })
-    }
-
+    };
     function search() {
         initPageInfo();
         if(pageInfo.searchKey !== ""){
@@ -41,10 +67,7 @@ $(document).ready(function () {
         }else{
             alert("검색어를 지정");
         }
-        console.log(pageInfo.searchKey);
-    }
+    };
 
-    $("form").submit(function () {
-        search();
-    })
+
 });
