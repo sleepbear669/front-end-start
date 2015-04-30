@@ -36,7 +36,7 @@
 
     <!-- 이미지 있을경우만 이미지 노출 -->
     <div class="mov-panel" style="margin-top:30px">
-        <ul>
+        <ul id="searchList">
             <li><a href="">벚꽃풍경 영상</a></li>
             <li>
                 <img src="http://www.astrolove.kr/files/attach/images/143/339/200804100941-21628.jpg" width="100" alt="" class="img-thumbnail">
@@ -48,6 +48,18 @@
 
     <!-- 더보기 있을경우만 노출 -->
     <button class="btn btn-default btn-block">더보기</button>
+
+    <script type="text/template" id="listTemplate">
+
+        {{each(key, item) list}}
+        <li>
+            {{if type == "vclip" || type == "image"}}<img src="${thumbnail}" class="img-thumbnail hide">{{/if}}
+            <a href="${item.link}" target="_blank">${item.title}</a>
+        </li>
+        {{/each}}
+
+    </script>
+    <script type="text/javascript" src="searchService.js"></script>
 </div>
 </body>
 </html>
