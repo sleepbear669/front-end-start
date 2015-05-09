@@ -1,9 +1,10 @@
 (function(app){
 
-  app.model = {
+    app.model = {
 
-    id: '',
-    title: '',
-    isDone: ''
-  };
+        id: '',
+        title: '',
+        isDone: false,
+        date : ''
+    };
 })(Todo);

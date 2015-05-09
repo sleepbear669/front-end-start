@@ -30,6 +30,19 @@
 
             app.$wrap.trigger("removeCollection", [data]);
 
+        },
+        update : function(id, checked){
+            for (var i = 0; i < data.length; i++) {
+
+                if (data[i].id === id) {
+                    console.log('find', i, checked);
+                    data[i].isDone = checked;
+                    break;
+                }
+
+            }//end for
+
+            app.$wrap.trigger("removeCollection", [data]);
         }
 
     };

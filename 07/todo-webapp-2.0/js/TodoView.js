@@ -22,7 +22,8 @@
             var todo = $.extend({}, app.model, {
                 id: app.util.uniqId(),
                 title: fieldValue,
-                isDone : false
+                isDone : false,
+                date : app.util.currentDate()
             });
 
             //console.log('new​ todo.model:', todo);

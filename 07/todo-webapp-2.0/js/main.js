@@ -21,7 +21,12 @@
         app.collection.remove( id );
 
     });
-    $ilstDom.on("click",".toggle-checked",function(event){
+    $listDom.on("click",".toggle-checked",function(event){
+        var $completeBtn = $(event.target);
+        var id = $completeBtn.parent().data('id');
+        var checked = $completeBtn.is(":checked");
+
+        app.collection.update(id,checked);
 
     });
     // //처음 로딩시에 기존에 저장된 데이터 가져와서 보여주기
