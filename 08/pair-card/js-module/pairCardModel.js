@@ -10,10 +10,14 @@ var cardContainer = {
     row : 4,
     column : 4,
     totalCard : function(){
-      return this.row * this.column;
+        return this.row * this.column;
     },
-        cardDeck : [],
-    cardColor : []
+    cardDeck : [],
+    cardColor : [],
+    init : function(){
+        this.cardDeck = [];
+        this.cardColor = [];
+    }
 }
 
 var cardColor = function(){

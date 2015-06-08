@@ -4,6 +4,7 @@
 (function($, global, app){
     app.render = function(){
         var $cardBox = $("#card_box");
+        $cardBox.html("");
         for(var i in this.cardDeck) {
             $cardBox.append($("<div>").addClass("card"));
         }

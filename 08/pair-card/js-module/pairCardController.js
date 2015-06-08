@@ -5,17 +5,24 @@
     app.reversCard = {
         count : 0,
         cardIndex : [],
-        cardElement : []
+        cardElement : [],
+        init : function(){
+            this.count = 0;
+            this.cardIndex = [];
+            this.cardElement = [];
+        }
     };
     app.clickCard = function(card){
-        var index = card.index();
-        if(app.reversCard.count < 2) {
-            var cardCount = app.reversCard.count++;
-            app.reversCard.cardIndex[cardCount] = index;
-            app.reversCard.cardElement[cardCount] = card;
-            card.addClass(app.cardDeck[index].class);
-            if(app.reversCard.count  == 2) {
-                setTimeout(app.cardMatch, 1000)
+        if(app.reversCard.cardIndex[0] != card.index()){
+            var index = card.index();
+            if(app.reversCard.count < 2) {
+                var cardCount = app.reversCard.count++;
+                app.reversCard.cardIndex[cardCount] = index;
+                app.reversCard.cardElement[cardCount] = card;
+                card.addClass(app.cardDeck[index].class);
+                if(app.reversCard.count  == 2) {
+                    setTimeout(app.cardMatch, 500)
+                }
             }
         }
     };
@@ -39,5 +46,10 @@
         if(card1.class == card2.class) {
             return true;
         }else return false;
+    }
+    app.startGame  = function(){
+        app.reversCard.init();
+        app.makeCardDeck();
+        app.render();
     }
 })(jQuery, cardContainer);
